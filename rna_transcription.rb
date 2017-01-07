@@ -4,17 +4,26 @@ end
 
 class Complement
 
-  def self.of_dna(dna)
-    rna = Array.new
-    i = 0
-    while (i < dna.length)
-      i += 1
+TO_RNA =
+    {
+      'G'=> 'C',
+      'C'=> 'G',
+      'T'=> 'A',
+      'A'=> 'U',
+      'U'=> ''
+    }
 
-    case dna
-    when "G"
-      'C'
+
+
+  def self.of_dna(dna)
+    rna = ""
+    dna.each_char.with_object('') do |char| 
+      if TO_RNA[char] == nil
+        return ''
+      else
+        rna << TO_RNA[char]
+      end
     end
+      rna
   end
-  return rna.join('')
-end
 end
